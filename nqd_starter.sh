@@ -4,7 +4,7 @@
 DOCKERFILE_URL="https://raw.githubusercontent.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/Dockerfile"
 DOCKER_IMAGE_NAME="nonebot2-quickly-docker"
 DOCKER_CONTAINER_NAME="nonebot2_quickly_docker"
-HOST_PORT=8080
+HOST_PORT=7071
 CONTAINER_PORT=7071
 
 # 步骤1：下载Dockerfile
