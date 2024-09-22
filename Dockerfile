@@ -5,7 +5,7 @@ FROM debian:buster
 ENV TZ=Asia/Shanghai
 
 # 更新软件包列表并安装Python和pip3
-RUN apt-get update -y && apt-get install -y python3 python3-pip python3-venv git
+RUN apt-get update -y && apt-get install -y python3 python3-pip python3-venv curl
 
 # 降级 pip 版本到 20.2，避免 'pip._internal.main' 模块问题
 RUN pip3 install --upgrade pip==20.2
@@ -24,44 +24,14 @@ WORKDIR /app
 # 创建一个名为 'nb2' 的文件夹
 RUN mkdir nb2
 
-# 写入 .env 文件
-RUN echo "ENVIRONMENT=dev" >> nb2/.env.prod \
-    && echo "DRIVER=~fastapi+~httpx+~websockets+~aiohttp" > nb2/.env.prod \
-    && echo "HOST=0.0.0.0  # 配置 NoneBot 监听的 IP / 主机名" > nb2/.env.prod \
-    && echo "PORT=7071  # 配置 NoneBot 监听的端口" >> nb2/.env.prod \
-    && echo "COMMAND_START=[\"/\"]  # 配置命令起始字符" >> nb2/.env.prod \
-    && echo "COMMAND_SEP=[\".\"]  # 配置命令分割字符" >> nb2/.env.prod
+# 下载 .env.prod 文件并替换到 nb2 文件夹
+RUN curl -o nb2/.env.prod https://raw.githubusercontent.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/templates/.env.prod
 
-# 写入 bot.py 文件
-RUN echo "import nonebot" > nb2/bot.py \
-    && echo "from nonebot.adapters.onebot.v11 import Adapter" >> nb2/bot.py \
-    && echo "" >> nb2/bot.py \
-    && echo "nonebot.init()" >> nb2/bot.py \
-    && echo "" >> nb2/bot.py \
-    && echo "driver = nonebot.get_driver()" >> nb2/bot.py \
-    && echo "driver.register_adapter(Adapter)" >> nb2/bot.py \
-    && echo "nonebot.load_builtin_plugins(\"echo\")  # 内置插件" >> nb2/bot.py \
-    && echo "# nonebot.load_plugin(\"thirdparty_plugin\")  # 第三方插件" >> nb2/bot.py \
-    && echo "# nonebot.load_plugins(\"src/plugins\")  # 本地插件" >> nb2/bot.py \
-    && echo "nonebot.load_from_toml(\"/app/nb2/pyproject.toml\", encoding=\"utf-8\")" >> nb2/bot.py \
-    && echo "" >> nb2/bot.py \
-    && echo "if __name__ == \"__main__\":" >> nb2/bot.py \
-    && echo "    nonebot.run()" >> nb2/bot.py
+# 下载 bot.py 文件并替换到 nb2 文件夹
+RUN curl -o nb2/bot.py https://raw.githubusercontent.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/templates/bot.py
 
 # 写入 pyproject.toml 文件
-RUN echo "[project]" > nb2/pyproject.toml \
-    && echo "name = \"mine\"" >> nb2/pyproject.toml \
-    && echo "version = \"0.1.0\"" >> nb2/pyproject.toml \
-    && echo "description = \"mine\"" >> nb2/pyproject.toml \
-    && echo "readme = \"README.md\"" >> nb2/pyproject.toml \
-    && echo "requires-python = \">=3.8, <4.0\"" >> nb2/pyproject.toml \
-    && echo "" >> nb2/pyproject.toml \
-    && echo "[tool.nonebot]" >> nb2/pyproject.toml \
-    && echo "adapters = [" >> nb2/pyproject.toml \
-    && echo "    { name = \"OneBot V11\", module_name = \"nonebot.adapters.onebot.v11\" }" >> nb2/pyproject.toml \
-    && echo "]" >> nb2/pyproject.toml \
-    && echo "plugin_dirs = [\"src/plugins\"]" >> nb2/pyproject.toml \
-    && echo "builtin_plugins = [\"echo\"]" >> nb2/pyproject.toml
+RUN curl -o nb2/bot.py https://raw.githubusercontent.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/templates/pyproject.toml
 
 # 显示当前目录结构和文件内容（仅用于调试）
 RUN ls -a -R /app/nb2 && cat nb2/.env.prod && cat nb2/bot.py
