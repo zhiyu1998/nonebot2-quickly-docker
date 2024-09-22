@@ -1,8 +1,16 @@
-# nonebot2-quickly-docker
+# 🐳 + 🤖 nonebot2-quickly-docker
 
 Nonebot2 （OneBot v11）机器人快速构建的 Docker镜像，一秒入魂！
 
 ## 快速开始
+
+### Linux 一键安装脚本
+
+> curl -fsSL https://raw.githubusercontent.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/nqd_starter.sh > nqd_starter.sh && chmod 755 nqd_starter.sh && ./npr_install.sh
+
+### 自动构建
+
+@todo
 
 ### 手动构建
 
@@ -13,10 +21,6 @@ Nonebot2 （OneBot v11）机器人快速构建的 Docker镜像，一秒入魂！
 如果你的 `Onebot` （例如 Napcat、Lagrange.Onebot） 反向连接端口是8080，那么就这样运行
 
 > docker run --name nonebot2_quickly_docker -d -p 8080:7071 nonebot2-quickly-docker
-
-### 自动构建
-
-@todo
 
 ## TODO
 
