@@ -6,7 +6,7 @@ Nonebot2 （OneBot v11）机器人快速构建的 Docker镜像，一秒入魂！
 
 ### Linux 一键安装脚本
 
-> curl -fsSL https://raw.githubusercontent.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/nqd_starter.sh > nqd_starter.sh && chmod 755 nqd_starter.sh && ./npr_install.sh
+> curl -fsSL https://raw.gitmirror.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/nqd_starter.sh > nqd_starter.sh && chmod 755 nqd_starter.sh && ./nqd_starter.sh
 
 ### 自动构建
 
