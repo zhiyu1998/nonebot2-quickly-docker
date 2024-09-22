@@ -25,19 +25,25 @@ RUN pip3 install nonebot-adapter-onebot
 RUN mkdir nb2
 
 # 下载 .env.prod 文件并替换到 nb2 文件夹
-RUN curl -o /nb2/.env.prod https://raw.githubusercontent.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/templates/.env.prod
+RUN curl -o /nb2/.env.prod https://raw.gitmirror.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/templates/.env.prod
 
 # 下载 bot.py 文件并替换到 nb2 文件夹
-RUN curl -o /nb2/bot.py https://raw.githubusercontent.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/templates/bot.py
+RUN curl -o /nb2/bot.py https://raw.gitmirror.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/templates/bot.py
 
 # 写入 pyproject.toml 文件
-RUN curl -o /nb2/pyproject.toml https://raw.githubusercontent.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/templates/pyproject.toml
+RUN curl -o /nb2/pyproject.toml https://raw.gitmirror.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/templates/pyproject.toml
 
 # 显示当前目录结构和文件内容（仅用于调试）
 # RUN ls -a -R /nb2 && cat /nb2/.env.prod && cat /nb2/bot.py && cat /nb2/pyproject.toml
 
 # 设置工作目录为 nb2
 WORKDIR /nb2
+
+# 创建插件文件夹
+RUN mkdir -p src/plugins
+
+# 安装 nonebot-plugin-resolver
+RUN curl -fsSL https://raw.gitmirror.com/zhiyu1998/nonebot-plugin-resolver/master/npr_install.sh > npr_install.sh && chmod 755 npr_install.sh && ./npr_install.sh
 
 # 设置容器启动时执行的命令
 CMD ["python3", "bot.py"]
