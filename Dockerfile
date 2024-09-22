@@ -18,9 +18,6 @@ RUN pip3 install 'nonebot2[fastapi]' 'nonebot2[httpx]' 'nonebot2[websockets]' 'n
 
 RUN pip3 install nonebot-adapter-onebot
 
-# 设置工作目录为 /app（或者你可以设置为任何你需要的目录）
-WORKDIR /app
-
 # 创建一个名为 'nb2' 的文件夹
 RUN mkdir nb2
 
@@ -31,13 +28,13 @@ RUN curl -o nb2/.env.prod https://raw.githubusercontent.com/zhiyu1998/nonebot2-q
 RUN curl -o nb2/bot.py https://raw.githubusercontent.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/templates/bot.py
 
 # 写入 pyproject.toml 文件
-RUN curl -o nb2/bot.py https://raw.githubusercontent.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/templates/pyproject.toml
+RUN curl -o nb2/pyproject.toml https://raw.githubusercontent.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/templates/pyproject.toml
 
 # 显示当前目录结构和文件内容（仅用于调试）
-RUN ls -a -R /app/nb2 && cat nb2/.env.prod && cat nb2/bot.py
+RUN ls -a -R nb2 && cat nb2/.env.prod && cat nb2/bot.py && cat nb2/pyproject.toml
 
 # 设置工作目录为 nb2
-WORKDIR /app/nb2
+WORKDIR /nb2
 
 # 设置容器启动时执行的命令
 CMD ["python3", "bot.py"]
