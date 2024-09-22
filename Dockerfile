@@ -34,7 +34,7 @@ RUN curl -o /nb2/bot.py https://raw.githubusercontent.com/zhiyu1998/nonebot2-qui
 RUN curl -o /nb2/pyproject.toml https://raw.githubusercontent.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/templates/pyproject.toml
 
 # 显示当前目录结构和文件内容（仅用于调试）
-RUN ls -a -R /nb2 && cat /nb2/.env.prod && cat /nb2/bot.py && cat /nb2/pyproject.toml
+# RUN ls -a -R /nb2 && cat /nb2/.env.prod && cat /nb2/bot.py && cat /nb2/pyproject.toml
 
 # 设置工作目录为 nb2
 WORKDIR /nb2
