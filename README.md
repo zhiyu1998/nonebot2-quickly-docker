@@ -18,9 +18,9 @@ Nonebot2 （OneBot v11）机器人快速构建的 Docker镜像，一秒入魂！
 
 > docker build -t nonebot2-quickly-docker . --progress=plain
 
-如果你的 `Onebot` （例如 Napcat、Lagrange.Onebot） 反向连接端口是8080，那么就这样运行
+如果你的 `Onebot` （例如 Napcat、Lagrange.Onebot） 反向连接端口是7071，那么就这样运行（如是其他8080就是`-p 8080:7071`）
 
-> docker run --name nonebot2_quickly_docker -d -p 8080:7071 -v /nb2:/nb2 nonebot2-quickly-docker
+> docker run --name nonebot2_quickly_docker -d -p 7071:7071 -v /nb2:/nb2 nonebot2-quickly-docker
 
 ## TODO
 
