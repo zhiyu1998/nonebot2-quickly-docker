@@ -1,5 +1,5 @@
 ---
-updated: 2024-09-23 13:46:36
+updated: 2024-09-23 13:48:03
 ---
 
 # 🐳 + 🤖 nonebot2-quickly-docker
@@ -8,7 +8,7 @@ Nonebot2 （OneBot v11）机器人快速构建的 Docker镜像，一秒入魂！
 
 ## 🚀 快速开始
 
-### 1️⃣ Linux 一键安装脚本
+### 1️⃣ Linux 一键安装脚本（推荐，前提是你有 Docker）
 
 > curl -fsSL https://raw.gitmirror.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/nqd_starter.sh > nqd_starter.sh && chmod 755 nqd_starter.sh && ./nqd_starter.sh
 
