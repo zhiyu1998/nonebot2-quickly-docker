@@ -9,7 +9,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # 更新软件包列表并安装Python和pip3
 RUN apt-get update -y && \
-    apt-get install -y curl git wget && \
+    apt-get install -y curl git wget ffmpeg && \
     apt-get install -y python3.11 python3-pip && \
     apt-get clean
 
