@@ -68,18 +68,8 @@ else
     exit 1
 fi
 
-# 步骤4：等待容器准备完成（可选，根据需要修改等待时间）
-echo "等待容器启动完成..."
-sleep 10  # 可以根据容器启动时间适当修改等待时间
+echo "停止并删除容器 $DOCKER_CONTAINER_NAME..."
+docker stop $DOCKER_CONTAINER_NAME
+docker rm $DOCKER_CONTAINER_NAME
 
-# 步骤5：复制容器中的 /nb2 目录到宿主机
-echo "将 $DOCKER_CONTAINER_NAME 容器中的 $NONEBOT_PATH 目录复制到宿主机 $HOST_NB2_PATH..."
-docker cp $DOCKER_CONTAINER_NAME:$NONEBOT_PATH/. $HOST_NB2_PATH/
-
-# 检查文件是否成功复制
-if [ $? -eq 0 ]; then
-    echo "文件成功复制到宿主机的 $HOST_NB2_PATH"
-else
-    echo "无法复制文件到宿主机"
-    exit 1
-fi
+echo "脚本执行完毕！"
