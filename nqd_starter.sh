@@ -68,8 +68,4 @@ else
     exit 1
 fi
 
-echo "停止并删除容器 $DOCKER_CONTAINER_NAME..."
-docker stop $DOCKER_CONTAINER_NAME
-docker rm $DOCKER_CONTAINER_NAME
-
 echo "脚本执行完毕！"
