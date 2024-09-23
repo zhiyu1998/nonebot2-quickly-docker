@@ -45,5 +45,6 @@ cp -r templates/* /nb2
 ## Future Todo
 
 - [x] 自动构建
-- [ ] Memos集成
-- [x] [Resolver](https://github.com/zhiyu1998/nonebot-plugin-resolver)集成
+- [ ] Memos 集成
+- [ ] emoji 表情合成集成
+- [x] [nonebot-plugin-resolver](https://github.com/zhiyu1998/nonebot-plugin-resolver) 集成
