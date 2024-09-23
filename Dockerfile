@@ -1,17 +1,23 @@
 # 使用官方的Debian buster作为基础镜像
-FROM debian:buster
+FROM ubuntu:22.04
 
 # 设置环境变量，例如时区
 ENV TZ=Asia/Shanghai
 
+# 设置环境变量，防止交互安装
+ENV DEBIAN_FRONTEND=noninteractive
+
 # 更新软件包列表并安装Python和pip3
-RUN apt-get update -y && apt-get install -y python3 python3-pip python3-venv curl
+RUN apt-get update -y && \
+    apt-get install -y curl git wget && \
+    apt-get install -y python3.11 python3-pip && \
+    apt-get clean
+
+# 设置 Python 3.11 为默认版本
+RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
 
 # 降级 pip 版本到 20.2，避免 'pip._internal.main' 模块问题
-RUN pip3 install --upgrade pip==20.2
-
-# 使用 pip3 安装 nonestrap
-RUN pip3 install nonestrap -i https://pypi.tuna.tsinghua.edu.cn/simple
+RUN pip3 install --upgrade pip==24.0
 
 # 安装 Nonebot 必要依赖
 RUN pip3 install 'nonebot2[fastapi]'
@@ -33,9 +39,6 @@ RUN curl -o /nb2/bot.py https://raw.gitmirror.com/zhiyu1998/nonebot2-quickly-doc
 # 写入 pyproject.toml 文件
 RUN curl -o /nb2/pyproject.toml https://raw.gitmirror.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/templates/pyproject.toml
 
-# 显示当前目录结构和文件内容（仅用于调试）
-# RUN ls -a -R /nb2 && cat /nb2/.env.prod && cat /nb2/bot.py && cat /nb2/pyproject.toml
-
 # 设置工作目录为 nb2
 WORKDIR /nb2
 
@@ -43,7 +46,12 @@ WORKDIR /nb2
 RUN mkdir -p src/plugins
 
 # 安装 nonebot-plugin-resolver
-RUN curl -fsSL https://raw.gitmirror.com/zhiyu1998/nonebot-plugin-resolver/master/npr_install.sh > npr_install.sh && chmod 755 npr_install.sh && ./npr_install.sh
+RUN pip3 install 'nonebot-plugin-resolver' -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+
+# 显示当前目录结构和文件内容（仅用于调试）
+RUN ls -a -R && cat .env.prod && cat bot.py && cat pyproject.toml && ls -a src/plugins
+
+RUN pip3 install --upgrade nonebot-plugin-resolver==1.2.12
 
 # 设置容器启动时执行的命令
 CMD ["python3", "bot.py"]
