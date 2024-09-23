@@ -15,7 +15,7 @@ updated: 2024-09-23 13:48:03
 
 > curl -fsSL https://raw.gitmirror.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/nqd_starter.sh > nqd_starter.sh && chmod 755 nqd_starter.sh && ./nqd_starter.sh
 
-### 2️⃣ 自动构建
+### 2️⃣ 半自动构建
 
 > 1. docker pull rrorange/nonebot2-quickly-docker  
 > 2. docker run --name nonebot2_quickly_docker -d \
@@ -28,20 +28,25 @@ updated: 2024-09-23 13:48:03
 ### 3️⃣ 手动构建
 
 1. 下载 Dockerfile 到某个文件夹，运行：
-
-> docker build -t nonebot2-quickly-docker . --progress=plain
+```shell
+docker build -t nonebot2-quickly-docker . --progress=plain
+```
 
 2. 如果你的 `Onebot` （例如 Napcat、Lagrange.Onebot） 反向连接端口是7071，那么就这样运行（如是其他8080就是`-p 8080:7071`）
 
-> docker run --name nonebot2_quickly_docker -d \\  
-> -p 7071:7071 \\  
-> -v /nb2:/nb2 \\  
-> rrorange/nonebot2-quickly-docker
+```shell
+docker run --name nonebot2_quickly_docker -d \
+                                -p 7071:7071 \
+                                -v /nb2:/nb2 \
+                                nonebot2-quickly-docker
+```
 
-1. 创建目录 & 拷贝 templates 的文件到 /nb2
+3. 创建目录 & 拷贝 templates 的文件到 /nb2
 
-> mkdir -p /nb2  
-> cp -r templates/* /nb2  
+```shell
+mkdir -p /nb2  
+cp -r templates/* /nb2  
+```
 
 ## Future Todo
 
