@@ -16,9 +16,6 @@ RUN apt-get update -y && \
 # 设置 Python 3.11 为默认版本
 RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
 
-# 降级 pip 版本到 20.2，避免 'pip._internal.main' 模块问题
-RUN pip3 install --upgrade pip==24.0
-
 # 安装 Nonebot 必要依赖
 RUN pip3 install 'nonebot2[fastapi]'
 RUN pip3 install 'nonebot2[httpx]'
@@ -29,6 +26,8 @@ RUN pip3 install nonebot-adapter-onebot
 
 # 创建一个名为 'nb2' 的文件夹
 RUN mkdir nb2
+
+RUN chmod -R 777 /nb2
 
 # 下载 .env.prod 文件并替换到 nb2 文件夹
 RUN curl -o /nb2/.env.prod https://raw.gitmirror.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/templates/.env.prod
@@ -51,7 +50,7 @@ RUN pip3 install 'nonebot-plugin-resolver' -i https://mirrors.tuna.tsinghua.edu.
 # 显示当前目录结构和文件内容（仅用于调试）
 RUN ls -a -R && cat .env.prod && cat bot.py && cat pyproject.toml && ls -a src/plugins
 
-RUN pip3 install --upgrade nonebot-plugin-resolver==1.2.12
+RUN pip3 install nonebot-plugin-resolver==1.2.12
 
 # 设置容器启动时执行的命令
 CMD ["python3", "bot.py"]
