@@ -1,3 +1,7 @@
+---
+updated: 2024-09-23 11:49:04
+---
+
 # 🐳 + 🤖 nonebot2-quickly-docker
 
 Nonebot2 （OneBot v11）机器人快速构建的 Docker镜像，一秒入魂！
@@ -26,4 +30,4 @@ Nonebot2 （OneBot v11）机器人快速构建的 Docker镜像，一秒入魂！
 
 - [ ] 自动构建
 - [ ] Memos集成
-- [-] [Resolver](https://github.com/zhiyu1998/nonebot-plugin-resolver)集成
+- [x] [Resolver](https://github.com/zhiyu1998/nonebot-plugin-resolver)集成
