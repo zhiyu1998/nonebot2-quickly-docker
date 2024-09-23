@@ -17,22 +17,16 @@ updated: 2024-09-23 13:48:03
 
 ### 2️⃣ 半自动构建
 
-> 1. docker pull rrorange/nonebot2-quickly-docker  
-> 2. docker run --name nonebot2_quickly_docker -d \
-> -p 7071:7071 \
-> -v /nb2:/nb2 \
-> rrorange/nonebot2-quickly-docker  
-> 3. mkdir -p /nb2
-> 4. 将 templates 的文件拷贝到 /nb2 （由于部分插件问题，这样做比较稳妥）
-
-### 3️⃣ 手动构建
-
 1. 下载 Dockerfile 到某个文件夹，运行：
 ```shell
 docker build -t nonebot2-quickly-docker . --progress=plain
 ```
+or 如果可以直接拉取镜像，那么就这样运行：
+```shell
+docker pull rrorange/nonebot2-quickly-docker
+```
 
-2. 如果你的 `Onebot` （例如 Napcat、Lagrange.Onebot） 反向连接端口是7071，那么就这样运行（如是其他8080就是`-p 8080:7071`）
+1. 如果你的 `Onebot` （例如 Napcat、Lagrange.Onebot） 反向连接端口是7071，那么就这样运行（如是其他8080就是`-p 8080:7071`）
 
 ```shell
 docker run --name nonebot2_quickly_docker -d \
