@@ -1,25 +1,25 @@
 ---
-updated: 2024-09-23 13:44:59
+updated: 2024-09-23 13:46:36
 ---
 
 # 🐳 + 🤖 nonebot2-quickly-docker
 
 Nonebot2 （OneBot v11）机器人快速构建的 Docker镜像，一秒入魂！
 
-## 快速开始
+## 🚀 快速开始
 
-### Linux 一键安装脚本
+### 1️⃣ Linux 一键安装脚本
 
 > curl -fsSL https://raw.gitmirror.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/nqd_starter.sh > nqd_starter.sh && chmod 755 nqd_starter.sh && ./nqd_starter.sh
 
-### 自动构建
+### 2️⃣ 自动构建
 
 > docker pull rrorange/nonebot2-quickly-docker  
 > docker run --name nonebot2_quickly_docker -d -p 7071:7071 -v /nb2:/nb2 nonebot2-quickly-docker
 > mkdir -p /nb2/nb2
 > 将templates的文件拷贝到/nb2 （由于部分插件问题，这样做比较稳妥）
 
-### 手动构建
+### 3️⃣ 手动构建
 
 下载 Dockerfile 到某个文件夹，运行：
 
@@ -29,7 +29,7 @@ Nonebot2 （OneBot v11）机器人快速构建的 Docker镜像，一秒入魂！
 
 > docker run --name nonebot2_quickly_docker -d -p 7071:7071 -v /nb2:/nb2 nonebot2-quickly-docker
 
-## TODO
+## Future Todo
 
 - [x] 自动构建
 - [ ] Memos集成
