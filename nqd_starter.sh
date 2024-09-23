@@ -1,8 +1,7 @@
 #!/bin/bash
 
 # 定义变量
-DOCKERFILE_URL="https://raw.githubusercontent.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/Dockerfile"
-DOCKER_IMAGE_NAME="nonebot2-quickly-docker"
+DOCKER_IMAGE_NAME="rrorange/nonebot2-quickly-docker"
 DOCKER_CONTAINER_NAME="nonebot2_quickly_docker"
 NONEBOT_PATH="/nb2"
 HOST_PORT=7071
@@ -32,31 +31,19 @@ curl -o /nb2/bot.py https://raw.gitmirror.com/zhiyu1998/nonebot2-quickly-docker/
 # 写入 pyproject.toml 文件
 curl -o /nb2/pyproject.toml https://raw.gitmirror.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/templates/pyproject.toml
 
-# 步骤1：下载Dockerfile
-echo "正在下载 $DOCKER_IMAGE_NAME..."
-curl -O $DOCKERFILE_URL
+# 步骤1：拉取Docker镜像
+echo "正在拉取 $DOCKER_IMAGE_NAME 镜像..."
+docker pull $DOCKER_IMAGE_NAME
 
-# 检查Dockerfile是否成功下载
-if [ -f "Dockerfile" ]; then
-    echo "$DOCKER_IMAGE_NAME 下载成功"
-else
-    echo "无法下载 $DOCKER_IMAGE_NAME。"
-    exit 1
-fi
-
-# 步骤2：构建Docker镜像
-echo "构建 $DOCKER_IMAGE_NAME 镜像..."
-docker build -t $DOCKER_IMAGE_NAME .
-
-# 检查镜像是否成功构建
+# 检查镜像是否成功拉取
 if [ $? -eq 0 ]; then
-    echo "$DOCKER_IMAGE_NAME 镜像构建成功"
+    echo "$DOCKER_IMAGE_NAME 镜像拉取成功"
 else
-    echo "构建 $DOCKER_IMAGE_NAME 镜像失败"
+    echo "拉取 $DOCKER_IMAGE_NAME 镜像失败"
     exit 1
 fi
 
-# 步骤3：运行Docker容器
+# 步骤2：运行Docker容器
 echo "运行 $DOCKER_IMAGE_NAME 容器..."
 docker run --name $DOCKER_CONTAINER_NAME -d -p $HOST_PORT:$CONTAINER_PORT -v $NONEBOT_PATH:$NONEBOT_PATH $DOCKER_IMAGE_NAME
 
