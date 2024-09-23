@@ -45,7 +45,7 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v4
         with:
-          context: ./Docker
+          context: ./
           file: ./Dockerfile
           push: true
           platforms: linux/amd64
