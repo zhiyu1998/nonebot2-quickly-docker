@@ -17,10 +17,10 @@ updated: 2024-09-23 13:48:03
 
 ### 2️⃣ 自动构建
 
-> docker pull rrorange/nonebot2-quickly-docker  
-> docker run --name nonebot2_quickly_docker -d -p 7071:7071 -v /nb2:/nb2 nonebot2-quickly-docker  
-> mkdir -p /nb2/nb2  
-> 将templates的文件拷贝到/nb2 （由于部分插件问题，这样做比较稳妥）
+> 1. docker pull rrorange/nonebot2-quickly-docker  
+> 2. docker run --name nonebot2_quickly_docker -d -p 7071:7071 -v /nb2:/nb2 nonebot2-quickly-docker  
+> 3. mkdir -p /nb2/nb2  
+> 4. 将 templates 的文件拷贝到 /nb2 （由于部分插件问题，这样做比较稳妥）
 
 ### 3️⃣ 手动构建
 
