@@ -45,12 +45,10 @@ WORKDIR /nb2
 RUN mkdir -p src/plugins
 
 # 安装 nonebot-plugin-resolver
-RUN pip3 install 'nonebot-plugin-resolver' -i https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple
+RUN pip3 install nonebot-plugin-resolver
 
 # 显示当前目录结构和文件内容（仅用于调试）
 RUN ls -a -R && cat .env.prod && cat bot.py && cat pyproject.toml && ls -a src/plugins
 
-RUN pip3 install nonebot-plugin-resolver==1.2.12
-
 # 设置容器启动时执行的命令
-CMD ["python3", "bot.py"]
+CMD ["python3", "bot.py", "--reload"]
