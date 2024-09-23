@@ -1,5 +1,5 @@
 ---
-updated: 2024-09-23 11:49:04
+updated: 2024-09-23 13:44:59
 ---
 
 # 🐳 + 🤖 nonebot2-quickly-docker
@@ -16,6 +16,8 @@ Nonebot2 （OneBot v11）机器人快速构建的 Docker镜像，一秒入魂！
 
 > docker pull rrorange/nonebot2-quickly-docker  
 > docker run --name nonebot2_quickly_docker -d -p 7071:7071 -v /nb2:/nb2 nonebot2-quickly-docker
+> mkdir -p /nb2/nb2
+> 将templates的文件拷贝到/nb2 （由于部分插件问题，这样做比较稳妥）
 
 ### 手动构建
 
@@ -29,6 +31,6 @@ Nonebot2 （OneBot v11）机器人快速构建的 Docker镜像，一秒入魂！
 
 ## TODO
 
-- [ ] 自动构建
+- [x] 自动构建
 - [ ] Memos集成
 - [x] [Resolver](https://github.com/zhiyu1998/nonebot-plugin-resolver)集成
