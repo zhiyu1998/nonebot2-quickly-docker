@@ -14,7 +14,8 @@ Nonebot2 （OneBot v11）机器人快速构建的 Docker镜像，一秒入魂！
 
 ### 自动构建
 
-@todo
+> docker pull rrorange/nonebot2-quickly-docker  
+> docker run --name nonebot2_quickly_docker -d -p 7071:7071 -v /nb2:/nb2 nonebot2-quickly-docker
 
 ### 手动构建
 
