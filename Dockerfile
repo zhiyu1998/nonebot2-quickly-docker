@@ -21,8 +21,5 @@ RUN pip install --no-cache-dir 'nonebot2[fastapi,httpx,websockets,aiohttp]' none
 # 设置工作目录为 nb2
 WORKDIR /nb2
 
-# 创建插件文件夹
-RUN mkdir -p src/plugins
-
 # 设置容器启动时执行的命令
 CMD ["python3", "bot.py", "--reload"]
