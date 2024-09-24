@@ -51,11 +51,21 @@ cp -r templates/* /nb2
 
 ## 拓展知识
 
-如果想安装某一个插件，可以使用以下命令进行安装：
+### 安装 & 卸载插件
+
+如果想`安装某一个插件`，可以使用以下命令进行安装：
 > docker exec -it nonebot2_quickly_docker pip install nonebot2-plugin-xxx && docker restart nonebot2_quickly_docker
 
-同理，如果需要卸载某个插件，可以使用以下命令进行卸载：
+同理，如果需要`卸载某个插件`，可以使用以下命令进行卸载：
 > docker exec -it nonebot2_quickly_docker pip uninstall nonebot2-plugin-xxx && docker restart nonebot2_quickly_docker
+
+### 安装 Napcat
+
+直接一键脚本：
+> curl -o napcat.sh https://nclatest.znin.net/NapNeko/NapCat-Installer/main/script/install.sh && sudo bash napcat.sh
+
+官网参考：
+> https://napneko.github.io/zh-CN/guide/getting-started
 
 ## Future Todo
 
