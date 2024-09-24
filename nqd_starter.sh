@@ -75,7 +75,7 @@ fi
 
 # 步骤2：运行Docker容器
 echo "运行 $DOCKER_IMAGE_NAME 容器..."
-docker run --name $DOCKER_CONTAINER_NAME -d -p $HOST_PORT:$CONTAINER_PORT -v $NONEBOT_PATH:$NONEBOT_PATH $DOCKER_IMAGE_NAME
+docker run --name $DOCKER_CONTAINER_NAME -d -p $HOST_PORT:$CONTAINER_PORT -v $NONEBOT_PATH:$NONEBOT_PATH --restart always $DOCKER_IMAGE_NAME
 
 # 检查容器是否成功运行
 if [ $? -eq 0 ]; then

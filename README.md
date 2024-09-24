@@ -34,10 +34,12 @@ docker pull rrorange/nonebot2-quickly-docker
 2. 如果你的 `Onebot` （例如 Napcat、Lagrange.Onebot） 反向连接端口是7071，那么就这样运行（如是其他8080就是`-p 8080:7071`）
 
 ```shell
-docker run --name nonebot2_quickly_docker -d \
-                                -p 7071:7071 \
-                                -v /nb2:/nb2 \
-                                nonebot2-quickly-docker
+docker run -d \
+  --name nonebot2_quickly_docker
+  -p 7071:7071 \
+  -v /nb2:/nb2 \
+  --restart always \
+  nonebot2-quickly-docker
 ```
 
 3. 创建目录 & 拷贝 templates 的文件到 /nb2
@@ -47,9 +49,16 @@ mkdir -p /nb2
 cp -r templates/* /nb2  
 ```
 
+## 拓展知识
+
+如果想安装某一个插件，可以使用以下命令进行安装：
+> docker exec -it nonebot2_quickly_docker pip install nonebot2-plugin-xxx && docker restart nonebot2_quickly_docker
+
+同理，如果需要卸载某个插件，可以使用以下命令进行卸载：
+> docker exec -it nonebot2_quickly_docker pip uninstall nonebot2-plugin-xxx && docker restart nonebot2_quickly_docker
+
 ## Future Todo
 
 - [x] 自动构建
-- [ ] Memos 集成
 - [x] emoji 表情合成集成
 - [x] [nonebot-plugin-resolver](https://github.com/zhiyu1998/nonebot-plugin-resolver) 集成
