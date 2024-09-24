@@ -4,9 +4,15 @@
 DOCKER_IMAGE_NAME="rrorange/nonebot2-quickly-docker"
 DOCKER_CONTAINER_NAME="nonebot2_quickly_docker"
 NONEBOT_PATH="/nb2"
-HOST_PORT=7071
 CONTAINER_PORT=7071
 HOST_NB2_PATH="/nb2"  # 这里定义宿主机上的 nb2 文件存储路径
+
+# 检查是否提供了端口参数，如果没有则使用默认值
+if [ $# -eq 0 ]; then
+    HOST_PORT=7071
+else
+    HOST_PORT=$1
+fi
 
 # 检查宿主机上的 nb2 目录是否存在，不存在则创建
 if [ ! -d "$HOST_NB2_PATH" ]; then

@@ -13,7 +13,12 @@ updated: 2024-09-23 13:48:03
 
 ### 1️⃣ Linux 一键安装脚本（推荐，前提是你有 Docker）
 
-> curl -fsSL https://raw.gitmirror.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/nqd_starter.sh > nqd_starter.sh && chmod 755 nqd_starter.sh && ./nqd_starter.sh
+> curl -fsSL https://raw.gitmirror.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/nqd_starter.sh > nqd_starter.sh && chmod 755 nqd_starter.sh && ./nqd_starter.sh 7071
+
+> [!NOTE]
+> 如果你想`默认的话就是7071端口`，否则自行修改，如下修改为`8080端口`作为Onebot的反向连接端口：  
+> curl -fsSL https://raw.gitmirror.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/nqd_starter.sh > nqd_starter.sh && chmod 755 nqd_starter.sh && ./nqd_starter.sh 8080
+
 
 ### 2️⃣ 半自动构建
 
@@ -46,5 +51,5 @@ cp -r templates/* /nb2
 
 - [x] 自动构建
 - [ ] Memos 集成
-- [ ] emoji 表情合成集成
+- [x] emoji 表情合成集成
 - [x] [nonebot-plugin-resolver](https://github.com/zhiyu1998/nonebot-plugin-resolver) 集成
