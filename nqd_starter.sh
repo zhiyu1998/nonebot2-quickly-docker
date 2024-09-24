@@ -6,6 +6,8 @@ DOCKER_CONTAINER_NAME="nonebot2_quickly_docker"
 NONEBOT_PATH="/nb2"
 CONTAINER_PORT=7071
 HOST_NB2_PATH="/nb2"  # 这里定义宿主机上的 nb2 文件存储路径
+MAX_RETRIES=3  # 最大重试次数
+RETRY_DELAY=3  # 重试间隔时间（秒）
 
 # 检查是否提供了端口参数，如果没有则使用默认值
 if [ $# -eq 0 ]; then
@@ -28,14 +30,36 @@ else
     echo "宿主机目录 $HOST_NB2_PATH 已存在"
 fi
 
+# 定义一个函数来执行带重试的curl请求
+function download_with_retry() {
+    local url=$1
+    local output=$2
+    local retries=0
+
+    while [ $retries -lt $MAX_RETRIES ]; do
+        curl -o $output $url
+        if [ $? -eq 0 ]; then
+            echo "$output 下载成功"
+            return 0
+        else
+            retries=$((retries + 1))
+            echo "$output 下载失败，重试第 $retries 次..."
+            sleep $RETRY_DELAY
+        fi
+    done
+
+    echo "$output 下载失败，已达到最大重试次数"
+    return 1
+}
+
 # 下载 .env.prod 文件并替换到 nb2 文件夹
-curl -o /nb2/.env.prod https://raw.gitmirror.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/templates/.env.prod
+download_with_retry "https://raw.gitmirror.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/templates/.env.prod" "/nb2/.env.prod" || exit 1
 
 # 下载 bot.py 文件并替换到 nb2 文件夹
-curl -o /nb2/bot.py https://raw.gitmirror.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/templates/bot.py
+download_with_retry "https://raw.gitmirror.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/templates/bot.py" "/nb2/bot.py" || exit 1
 
 # 写入 pyproject.toml 文件
-curl -o /nb2/pyproject.toml https://raw.gitmirror.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/templates/pyproject.toml
+download_with_retry "https://raw.gitmirror.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/templates/pyproject.toml" "/nb2/pyproject.toml" || exit 1
 
 # 步骤1：拉取Docker镜像
 echo "正在拉取 $DOCKER_IMAGE_NAME 镜像..."
