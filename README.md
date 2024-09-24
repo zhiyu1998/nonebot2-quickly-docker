@@ -15,7 +15,7 @@ updated: 2024-09-23 13:48:03
 
 > curl -fsSL https://raw.gitmirror.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/nqd_starter.sh > nqd_starter.sh && chmod 755 nqd_starter.sh && ./nqd_starter.sh 7071
 
-> [!NOTE]
+> [!IMPORTANT]
 > 如果你想`默认的话就是7071端口`，否则自行修改，如下修改为`8080端口`作为Onebot的反向连接端口：  
 > curl -fsSL https://raw.gitmirror.com/zhiyu1998/nonebot2-quickly-docker/refs/heads/main/nqd_starter.sh > nqd_starter.sh && chmod 755 nqd_starter.sh && ./nqd_starter.sh 8080
 
