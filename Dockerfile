@@ -16,7 +16,7 @@ RUN apt-get update -y && \
     rm -rf /var/lib/apt/lists/*
 
 # 安装 Nonebot 必要依赖
-RUN pip install --no-cache-dir 'nonebot2[fastapi,httpx,websockets,aiohttp]' nonebot-adapter-onebot nonebot-plugin-resolver nonebot_plugin_emojimix
+RUN pip install --no-cache-dir 'nonebot2[fastapi,httpx,websockets,aiohttp]' nonebot-adapter-onebot nonebot-plugin-resolver nonebot_plugin_emojimix -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 # 设置工作目录为 nb2
 WORKDIR /nb2
