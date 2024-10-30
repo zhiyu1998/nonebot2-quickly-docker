@@ -42,6 +42,10 @@ docker run -d \
   nonebot2-quickly-docker
 ```
 
+> [!NOTE]
+> 或者上面的 `\` 无法使用，可以使用下面的一行命令：
+> docker run -d --name nonebot2_quickly_docker -p 7071:7071 -v /nb2:/nb2 --restart always nonebot2-quickly-docker
+
 3. 创建目录 & 拷贝 templates 的文件到 /nb2
 
 ```shell
