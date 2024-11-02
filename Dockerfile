@@ -5,6 +5,21 @@ FROM python:3.12.7-slim
 ENV TZ=Asia/Shanghai
 ENV DEBIAN_FRONTEND=noninteractive
 
+# 修改apt镜像
+RUN echo "# 默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释
+deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm main contrib non-free non-free-firmware
+
+deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-updates main contrib non-free non-free-firmware
+
+deb https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware
+# deb-src https://mirrors.tuna.tsinghua.edu.cn/debian/ bookworm-backports main contrib non-free non-free-firmware
+
+# 以下安全更新软件源包含了官方源与镜像站配置，如有需要可自行修改注释切换
+deb https://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware
+# deb-src https://security.debian.org/debian-security bookworm-security main contrib non-free non-free-firmware" > /etc/apt/sources.list
+
 # 更新软件包列表并安装 curl 和 xz-utils
 RUN apt-get update -y && \
     apt-get install --no-install-recommends -y curl xz-utils && \
