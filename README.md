@@ -75,4 +75,5 @@ cp -r templates/* /nb2
 
 - [x] 自动构建
 - [x] emoji 表情合成集成
+- [x] 点赞、订阅赞集成
 - [x] [nonebot-plugin-resolver](https://github.com/zhiyu1998/nonebot-plugin-resolver) 集成
